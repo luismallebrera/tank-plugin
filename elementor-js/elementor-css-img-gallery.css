@@ -1,0 +1,5 @@
+@media (max-width: 768px){
+.ttgr-layout-mobile-df-2 .tt-grid-item {
+    width: 50%!important;
+}
+}
