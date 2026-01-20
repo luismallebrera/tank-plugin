@@ -469,7 +469,6 @@ if(! function_exists('tank_portfolio_grid_shortcode')){
 		$html .= '</div>';
 		$html .= '</div>';
 		$html .= '</div>';
-		wp_enqueue_script('tank-wpbakery-port-iso');
 		return $html;
 	}
 	add_shortcode('tank_portfolio_grid', 'tank_portfolio_grid_shortcode');

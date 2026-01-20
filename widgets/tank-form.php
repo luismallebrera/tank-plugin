@@ -153,7 +153,7 @@ class Tank_Form extends Widget_Base {
 				'label' => __( 'Text Color', 'tank-plugin' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .vc_template textarea, .vc_template input[type="text"], .vc_template input[type=email]' => 'color: {{VALUE}};',
+					'{{WRAPPER}} textarea, {{WRAPPER}} input[type="text"], {{WRAPPER}} input[type=email]' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -164,7 +164,7 @@ class Tank_Form extends Widget_Base {
 				'label' => __( 'Border Color', 'tank-plugin' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .vc_template textarea, .vc_template input[type="text"], .vc_template input[type=email]' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} textarea, {{WRAPPER}} input[type="text"], {{WRAPPER}} input[type=email]' => 'border-color: {{VALUE}};',
 				],
 			]
 		);
@@ -173,7 +173,7 @@ class Tank_Form extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'input_typo',
-				'selector' => '{{WRAPPER}} .vc_template textarea, .vc_template input[type="text"], .vc_template input[type=email]',
+				'selector' => '{{WRAPPER}} textarea, {{WRAPPER}} input[type="text"], {{WRAPPER}} input[type=email]',
 			]
 		);
 		$this->end_controls_section();
@@ -192,8 +192,8 @@ class Tank_Form extends Widget_Base {
 				'label' => __( 'Color', 'tank-plugin' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .vc_template input::-webkit-input-placeholder, .vc_template textarea::-webkit-input-placeholder, .vc_template input[type="email"]::-webkit-input-placeholder, .vc_template input[type="text"]::-webkit-input-placeholder' => 'color: {{VALUE}}!important;',
-					'{{WRAPPER}} .vc_template input:-moz-placeholder, .vc_template textarea:-moz-placeholder, .vc_template input[type="text"]:-moz-placeholder, .vc_template input[type="email"]:-moz-placeholder' => 'color: {{VALUE}}!important;',
+					'{{WRAPPER}} input::-webkit-input-placeholder, {{WRAPPER}} textarea::-webkit-input-placeholder, {{WRAPPER}} input[type="email"]::-webkit-input-placeholder, {{WRAPPER}} input[type="text"]::-webkit-input-placeholder' => 'color: {{VALUE}}!important;',
+					'{{WRAPPER}} input:-moz-placeholder, {{WRAPPER}} textarea:-moz-placeholder, {{WRAPPER}} input[type="text"]:-moz-placeholder, {{WRAPPER}} input[type="email"]:-moz-placeholder' => 'color: {{VALUE}}!important;',
 				],
 			]
 		);
@@ -203,7 +203,7 @@ class Tank_Form extends Widget_Base {
 			[
 				'label' => __( 'Chrome Placeholder', 'tank-plugin' ),
 				'name' => 'placeholder_typography_webkit',
-				'selector' => '{{WRAPPER}} .vc_template input::-webkit-input-placeholder, {{WRAPPER}} .vc_template textarea::-webkit-input-placeholder',
+				'selector' => '{{WRAPPER}} input::-webkit-input-placeholder, {{WRAPPER}} textarea::-webkit-input-placeholder',
 			]
 		);
 		$this->add_group_control(
@@ -211,7 +211,7 @@ class Tank_Form extends Widget_Base {
 			[
 				'label' => __( 'Mozila Placeholder', 'tank-plugin' ),
 				'name' => 'placeholder_typography_moz',
-				'selector' => '{{WRAPPER}} .vc_template input:-moz-placeholder, {{WRAPPER}} .vc_template textarea:-moz-placeholder',
+				'selector' => '{{WRAPPER}} input:-moz-placeholder, {{WRAPPER}} textarea:-moz-placeholder',
 			]
 		);
 		
@@ -231,7 +231,7 @@ class Tank_Form extends Widget_Base {
 				'label' => __( 'Text Color', 'tank-plugin' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .vc_template select, .wpcf7-form select' => 'color: {{VALUE}};',
+					'{{WRAPPER}} select, .wpcf7-form select' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -242,7 +242,7 @@ class Tank_Form extends Widget_Base {
 				'label' => __( 'Border Color', 'tank-plugin' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .vc_template select, .wpcf7-form select' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} select, .wpcf7-form select' => 'border-color: {{VALUE}};',
 				],
 			]
 		);
@@ -253,7 +253,7 @@ class Tank_Form extends Widget_Base {
 				'label' => __( 'Options Text Color', 'tank-plugin' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .vc_template select option' => 'color: {{VALUE}};',
+					'{{WRAPPER}} select option' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -264,7 +264,7 @@ class Tank_Form extends Widget_Base {
 				'label' => __( 'Options Background Color', 'tank-plugin' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .vc_template select option' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} select option' => 'background-color: {{VALUE}};',
 				],
 			]
 		);
@@ -273,7 +273,7 @@ class Tank_Form extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'opt_seelct_typo',
-				'selector' => '{{WRAPPER}} .vc_template select, .wpcf7-form select',
+				'selector' => '{{WRAPPER}} select, .wpcf7-form select',
 			]
 		);
 		
@@ -293,7 +293,7 @@ class Tank_Form extends Widget_Base {
 				'label' => __( 'Color', 'tank-plugin' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .vc_template button, {{WRAPPER}} .tt-btn-light-outline:hover > *, {{WRAPPER}} .tt-btn-light-outline > *::after' => 'color: {{VALUE}};',
+					'{{WRAPPER}} button, {{WRAPPER}} .tt-btn-light-outline:hover > *, {{WRAPPER}} .tt-btn-light-outline > *::after' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -313,7 +313,7 @@ class Tank_Form extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'button_typo',
-				'selector' => '{{WRAPPER}} .vc_template button, {{WRAPPER}} .tt-btn-light-outline > *::after',
+				'selector' => '{{WRAPPER}} button, {{WRAPPER}} .tt-btn-light-outline > *::after',
 			]
 		);
 		$this->end_controls_section();
@@ -334,7 +334,7 @@ class Tank_Form extends Widget_Base {
 		?>
 
 		<!-- =========== Start of Title============ -->
-		<div  class="vc_template">
+		<div class="tank-form-wrapper">
            <?php echo do_shortcode($settings['form_shortcode']); ?>
 		</div>										
 		
