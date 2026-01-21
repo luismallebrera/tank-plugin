@@ -564,7 +564,7 @@
 				tl_ttgrClose.to(".ttgr-cat-list > li", { duration: 0.3, y: -80, autoAlpha: 0, stagger: 0.05, ease: Power2.easeIn });
 				tl_ttgrClose.to(".ttgr-cat-nav", { duration: 0.3, autoAlpha: 0, clearProps:"all" }, "+=0.2");
 				tl_ttgrClose.to(".portfolio-grid-item", { duration: 0.3, scale: 1, clearProps:"all" }, "-=0.4");
-				tl_ttgrClose.to(".pgi-caption, #page-header, .ttgr-cat-trigger-wrap", { duration: 0.3, autoAlpha: 1, clearProps:"all" }, "-=0.4");
+				tl_ttgrClose.to(".pgi-caption, #page-header, .ttgr-cat-trigger-wrap", { duration: 0.3, autoAlpha: 1 }, "-=0.4");
 				tl_ttgrClose.to(".ttgr-cat-list > li", { clearProps:"all" });
 			});
 		}
