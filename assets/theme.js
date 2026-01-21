@@ -462,57 +462,62 @@
 	}
 
 	// =====================================================
-	// Portfolio grid categories filter show/hide on scroll
-	// =====================================================
 
-	if ($(".tt-grid-categories").length) {
+	// ==========================================
+	// Portfolio grid categories navigation overlay
+	// ==========================================
 
-		var $ttgCatTriggerWrap = $(".ttgr-cat-trigger-wrap");
+	if ($(".ttgr-cat-nav").length) {
+		$(".ttgr-cat-nav").appendTo("#body-inner");
 
-		if ($ttgCatTriggerWrap.hasClass("ttgr-cat-fixed")) {
-			$ttgCatTriggerWrap.appendTo("#body-inner");
+		// On category trigger click
+		$(".ttgr-cat-trigger").on("click", function(e) {
+			e.preventDefault();
+			$("body").addClass("ttgr-cat-nav-open");
 
-			// Show/Hide trigger on page scroll
-			ScrollTrigger.create({
-				trigger: "#portfolio-grid",
-				start: "top bottom",
-				end: "bottom 75%",
-				scrub: true,
-				markers: false,
+			if ($("body").hasClass("ttgr-cat-nav-open")) {
+				gsap.to(".portfolio-grid-item", { duration: 0.3, scale: 0.9 });
+				gsap.to(".pgi-caption, .ttgr-cat-trigger", { duration: 0.3, autoAlpha: 0 });
 
-				onEnter: () => ttgCatShow(),
-				onLeave: () => ttgCatHide(),
-				onEnterBack: () => ttgCatShow(),
-				onLeaveBack: () => ttgCatHide(),
-			});
+				// Make "ttgr-cat-nav" unclickable
+				$(".ttgr-cat-nav").off("click");
 
-			function ttgCatShow() {
-				gsap.to($ttgCatTriggerWrap, { duration: 0.4, autoAlpha: 1, scale: 1, ease:Power2.easeOut });
+				// Categories step in animations
+				var tl_ttgrIn = gsap.timeline({
+					onComplete: function() {
+						ttCatNavClose();
+					}
+				});
+				tl_ttgrIn.to(".ttgr-cat-nav", { duration: 0.3, autoAlpha: 1 });
+				tl_ttgrIn.from(".ttgr-cat-list > li", { duration: 0.3, y: 80, autoAlpha: 0, stagger: 0.05, ease: Power2.easeOut, clearProps:"all" });
+
+				// On category link click
+				$(".ttgr-cat-nav a")
+				.not('[target="_blank"]')
+				.not('[href^="#"]')
+				.not('[href^="mailto"]')
+				.not('[href^="tel"]')
+				.on('click', function() {
+					gsap.to(".ttgr-cat-list > li", { duration: 0.3, y: -80, autoAlpha: 0, stagger: 0.05, ease: Power2.easeIn });
+				});
 			}
-			function ttgCatHide() {
-				gsap.to($ttgCatTriggerWrap, { duration: 0.4, autoAlpha: 0, scale: 0.9, ease:Power2.easeOut });
-			}
+		});
 
-		} else {
+		// On close click function
+		function ttCatNavClose() {
+			$(".ttgr-cat-nav").on("click", function() {
+				$("body").removeClass("ttgr-cat-nav-open");
 
-			// Hide trigger before it reaches the top when page scroll
-			gsap.to($ttgCatTriggerWrap, {
-				yPercent: 70,
-				autoAlpha: 0,
-				ease: "none",
-				scrollTrigger: {
-					trigger: $ttgCatTriggerWrap,
-					start: "top 250px",
-					end: "100px 250px",
-					scrub: true,
-					markers: false
-				},
+				// Categories step out animations
+				var tl_ttgrClose = gsap.timeline();
+				tl_ttgrClose.to(".ttgr-cat-list > li", { duration: 0.3, y: -80, autoAlpha: 0, stagger: 0.05, ease: Power2.easeIn });
+				tl_ttgrClose.to(".ttgr-cat-nav", { duration: 0.3, autoAlpha: 0, clearProps:"all" }, "+=0.2");
+				tl_ttgrClose.to(".portfolio-grid-item", { duration: 0.3, scale: 1, clearProps:"all" }, "-=0.4");
+				tl_ttgrClose.to(".pgi-caption, #page-header, .ttgr-cat-trigger", { duration: 0.3, autoAlpha: 1, clearProps:"all" }, "-=0.4");
+				tl_ttgrClose.to(".ttgr-cat-list > li", { clearProps:"all" });
 			});
-
 		}
 	}
-
-	// ========================================
 	// Portfolio grid categories filter
 	// ========================================
 
