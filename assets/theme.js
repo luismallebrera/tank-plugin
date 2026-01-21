@@ -523,62 +523,54 @@
 
 		// On category trigger click
 
-		$(".ttgr-cat-trigger").on("click", function(e) {
-			e.preventDefault();
-			$("body").addClass("ttgr-cat-nav-open");
-			
-			// Scroll to top then show navigation
-			if (typeof lenis !== "undefined") {
-				lenis.scrollTo(0, {
-					duration: 0.6,
+	$(".ttgr-cat-trigger").on("click", function(e) {
+		e.preventDefault();
+		$("body").addClass("ttgr-cat-nav-open");
+		
+		// Scroll to top then show navigation
+		if (typeof lenis !== "undefined") {
+			lenis.scrollTo(0, {
+				duration: 0.6,
+				onComplete: function() {
+					showCatNavigation();
+					setTimeout(function() {
+						lenis.stop();
+					}, 600);
+				}
+			});
+		} else {
+			showCatNavigation();
+		}
+
+		function showCatNavigation() {
+			if ($("body").hasClass("ttgr-cat-nav-open")) {
+				gsap.to(".portfolio-grid-item", { duration: 0.3, scale: 0.9 });
+				gsap.to(".pgi-caption, .ttgr-cat-trigger-wrap", { duration: 0.3, autoAlpha: 0 });
+
+				// Make "ttgr-cat-nav" unclickable
+				$(".ttgr-cat-nav").off("click");
+
+				// Categories step in animations
+				var tl_ttgrIn = gsap.timeline({
 					onComplete: function() {
-						// Show navigation after scroll completes
-						showCatNavigation();
-						// Stop lenis after animations complete
-						setTimeout(function() {
-							lenis.stop();
-						}, 600);
+						ttCatNavClose();
 					}
 				});
-			} else {
-				// Fallback if lenis is not available
-				showCatNavigation();
-			}
+				tl_ttgrIn.to(".ttgr-cat-nav", { duration: 0.3, autoAlpha: 1 });
+				tl_ttgrIn.from(".ttgr-cat-list > li", { duration: 0.3, y: 80, autoAlpha: 0, stagger: 0.05, ease: Power2.easeOut, clearProps:"all" });
 
-			function showCatNavigation() {
-				if ($("body").hasClass("ttgr-cat-nav-open")) {
-					gsap.to(".portfolio-grid-item", { duration: 0.3, scale: 0.9 });
-					gsap.to(".pgi-caption, .ttgr-cat-trigger-wrap", { duration: 0.3, autoAlpha: 0 });
-
-					// Make "ttgr-cat-nav" unclickable
-					$(".ttgr-cat-nav").off("click");
-
-					// Categories step in animations
-					var tl_ttgrIn = gsap.timeline({
-						onComplete: function() {
-							ttCatNavClose();
-						}
-					});
-					tl_ttgrIn.to(".ttgr-cat-nav", { duration: 0.3, autoAlpha: 1 });
-					tl_ttgrIn.from(".ttgr-cat-list > li", { duration: 0.3, y: 80, autoAlpha: 0, stagger: 0.05, ease: Power2.easeOut, clearProps:"all" });
-
-					// On category link click
-					$(".ttgr-cat-nav a")
-					.not('[target="_blank"]')
-					.not('[href^="#"]')
-					.not('[href^="mailto"]')
-					.not('[href^="tel"]')
-					.on('click', function() {
-						gsap.to(".ttgr-cat-list > li", { duration: 0.3, y: -80, autoAlpha: 0, stagger: 0.05, ease: Power2.easeIn });
-					});
-				}
-			}
-		});
+				// On category link click
+				$(".ttgr-cat-nav a")
+				.not('[target="_blank"]')
+				.not('[href^="#"]')
+				.not('[href^="mailto"]')
+				.not('[href^="tel"]')
+				.on('click', function() {
+					gsap.to(".ttgr-cat-list > li", { duration: 0.3, y: -80, autoAlpha: 0, stagger: 0.05, ease: Power2.easeIn });
 				});
 			}
-		});
-
-		// On close click function
+		}
+	});
 		function ttCatNavClose() {
 			$(".ttgr-cat-nav").on("click", function() {
 				if (typeof lenis !== "undefined") lenis.start();
