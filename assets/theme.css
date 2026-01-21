@@ -5635,7 +5635,7 @@ body:not(.is-mobile) .ttgr-cat-text > span::before {
 
 body.ttgr-cat-nav-open {
 
-	overflow-y: hidden !important;
+	/* overflow-y: hidden !important; */ /* Removed - using lenis.stop() instead */
 
 }
 
