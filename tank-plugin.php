@@ -928,38 +928,32 @@ function tank_plugin_enqueue_scripts() {
 	// Enqueue vendor libraries
 	// Normalize CSS
 	wp_enqueue_style('normalize', TANK_URL . '/vendor/normalize/normalize.min.css', array(), TANK_VERSION);
-	
+
 	// Font Awesome
 	wp_enqueue_style('font-awesome', TANK_URL . '/vendor/fontawesome/css/fontawesome-all.min.css', array(), TANK_VERSION);
-	
+
 	// GSAP
 	wp_enqueue_script('gsap', TANK_URL . '/vendor/gsap/gsap.min.js', array('jquery'), TANK_VERSION, true);
 	wp_enqueue_script('gsap-scrolltrigger', TANK_URL . '/vendor/gsap/ScrollTrigger.min.js', array('gsap'), TANK_VERSION, true);
 	wp_enqueue_script('gsap-scrolltoplugin', TANK_URL . '/vendor/gsap/ScrollToPlugin.min.js', array('gsap'), TANK_VERSION, true);
-	
+
 	// Swiper
 	wp_enqueue_style('swiper', TANK_URL . '/vendor/swiper/css/swiper-bundle.min.css', array(), TANK_VERSION);
 	wp_enqueue_script('swiper', TANK_URL . '/vendor/swiper/js/swiper-bundle.min.js', array('jquery'), TANK_VERSION, true);
-	
+
 	// Isotope
 	wp_enqueue_script('imagesloaded', TANK_URL . '/vendor/isotope/imagesloaded.pkgd.min.js', array('jquery'), TANK_VERSION, true);
 	wp_enqueue_script('isotope', TANK_URL . '/vendor/isotope/isotope.pkgd.min.js', array('jquery', 'imagesloaded'), TANK_VERSION, true);
 	wp_enqueue_script('packery-mode', TANK_URL . '/vendor/isotope/packery-mode.pkgd.min.js', array('isotope'), TANK_VERSION, true);
-	
+
 	// lightGallery
 	wp_enqueue_style('lightgallery', TANK_URL . '/vendor/lightgallery/css/lightgallery.min.css', array(), TANK_VERSION);
 	wp_enqueue_script('lightgallery', TANK_URL . '/vendor/lightgallery/js/lightgallery-all.min.js', array('jquery'), TANK_VERSION, true);
-	
-	// Smooth Scrollbar
-	wp_enqueue_script('smooth-scrollbar', TANK_URL . '/vendor/smooth-scrollbar.js', array('jquery'), TANK_VERSION, true);
-	
-	// Mousewheel
-	wp_enqueue_script('jquery-mousewheel', TANK_URL . '/vendor/jquery.mousewheel.min.js', array('jquery'), TANK_VERSION, true);
-	
+
 	// Main theme assets
 	wp_enqueue_style('tank-theme', TANK_URL . '/assets/theme.css', array('normalize', 'font-awesome', 'swiper', 'lightgallery'), TANK_VERSION);
-	wp_enqueue_script('tank-theme', TANK_URL . '/assets/theme.js', array('jquery', 'gsap', 'gsap-scrolltrigger', 'gsap-scrolltoplugin', 'swiper', 'isotope', 'packery-mode', 'lightgallery', 'smooth-scrollbar', 'jquery-mousewheel'), TANK_VERSION, true);
-	
+	wp_enqueue_script('tank-theme', TANK_URL . '/assets/theme.js', array('jquery', 'gsap', 'gsap-scrolltrigger', 'gsap-scrolltoplugin', 'swiper', 'isotope', 'packery-mode', 'lightgallery'), TANK_VERSION, true);
+
 	// Portfolio specific scripts (registered for use in shortcodes)
 	wp_register_script('tank-portfolio-slider', TANK_URL . '/assets/theme.js', array('jquery', 'gsap', 'swiper'), TANK_VERSION, true);
 	wp_register_script('tank-portfolio-carousel', TANK_URL . '/assets/theme.js', array('jquery', 'gsap', 'swiper'), TANK_VERSION, true);
@@ -967,7 +961,7 @@ function tank_plugin_enqueue_scripts() {
 add_action('wp_enqueue_scripts', 'tank_plugin_enqueue_scripts');
 
 }
-if ( in_array( $tank_plugin_get_theme->get( 'TextDomain' ), array( 'hello-elementor' ) ) ) {
+if ( in_array( $tank_plugin_get_theme->get( 'TextDomain' ), array( 'fugu-theme' ) ) ) {
 add_action('plugins_loaded', 'tank_plugin_load');
 }
 else {
