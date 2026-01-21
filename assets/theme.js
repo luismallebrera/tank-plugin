@@ -542,6 +542,8 @@
 			showCatNavigation();
 		}
 
+		gsap.set(".ttgr-cat-nav", { autoAlpha: 0 });
+
 		function showCatNavigation() {
 			if ($("body").hasClass("ttgr-cat-nav-open")) {
 				gsap.to(".portfolio-grid-item", { duration: 0.3, scale: 0.9 });
