@@ -522,43 +522,58 @@
 		$(".ttgr-cat-nav").appendTo("#body-inner");
 
 		// On category trigger click
+
 		$(".ttgr-cat-trigger").on("click", function(e) {
 			e.preventDefault();
 			$("body").addClass("ttgr-cat-nav-open");
-			// Scroll to top then stop lenis
+			
+			// Scroll to top then show navigation
 			if (typeof lenis !== "undefined") {
 				lenis.scrollTo(0, {
 					duration: 0.6,
 					onComplete: function() {
-						lenis.stop();
+						// Show navigation after scroll completes
+						showCatNavigation();
+						// Stop lenis after animations complete
+						setTimeout(function() {
+							lenis.stop();
+						}, 600);
 					}
 				});
+			} else {
+				// Fallback if lenis is not available
+				showCatNavigation();
 			}
 
-			if ($("body").hasClass("ttgr-cat-nav-open")) {
-				gsap.to(".portfolio-grid-item", { duration: 0.3, scale: 0.9 });
-				gsap.to(".pgi-caption, .ttgr-cat-trigger-wrap", { duration: 0.3, autoAlpha: 0 });
+			function showCatNavigation() {
+				if ($("body").hasClass("ttgr-cat-nav-open")) {
+					gsap.to(".portfolio-grid-item", { duration: 0.3, scale: 0.9 });
+					gsap.to(".pgi-caption, .ttgr-cat-trigger-wrap", { duration: 0.3, autoAlpha: 0 });
 
-				// Make "ttgr-cat-nav" unclickable
-				$(".ttgr-cat-nav").off("click");
+					// Make "ttgr-cat-nav" unclickable
+					$(".ttgr-cat-nav").off("click");
 
-				// Categories step in animations
-				var tl_ttgrIn = gsap.timeline({
-					onComplete: function() {
-						ttCatNavClose();
-					}
-				});
-				tl_ttgrIn.to(".ttgr-cat-nav", { duration: 0.3, autoAlpha: 1 });
-				tl_ttgrIn.from(".ttgr-cat-list > li", { duration: 0.3, y: 80, autoAlpha: 0, stagger: 0.05, ease: Power2.easeOut, clearProps:"all" });
+					// Categories step in animations
+					var tl_ttgrIn = gsap.timeline({
+						onComplete: function() {
+							ttCatNavClose();
+						}
+					});
+					tl_ttgrIn.to(".ttgr-cat-nav", { duration: 0.3, autoAlpha: 1 });
+					tl_ttgrIn.from(".ttgr-cat-list > li", { duration: 0.3, y: 80, autoAlpha: 0, stagger: 0.05, ease: Power2.easeOut, clearProps:"all" });
 
-				// On category link click
-				$(".ttgr-cat-nav a")
-				.not('[target="_blank"]')
-				.not('[href^="#"]')
-				.not('[href^="mailto"]')
-				.not('[href^="tel"]')
-				.on('click', function() {
-					gsap.to(".ttgr-cat-list > li", { duration: 0.3, y: -80, autoAlpha: 0, stagger: 0.05, ease: Power2.easeIn });
+					// On category link click
+					$(".ttgr-cat-nav a")
+					.not('[target="_blank"]')
+					.not('[href^="#"]')
+					.not('[href^="mailto"]')
+					.not('[href^="tel"]')
+					.on('click', function() {
+						gsap.to(".ttgr-cat-list > li", { duration: 0.3, y: -80, autoAlpha: 0, stagger: 0.05, ease: Power2.easeIn });
+					});
+				}
+			}
+		});
 				});
 			}
 		});
