@@ -525,7 +525,15 @@
 		$(".ttgr-cat-trigger").on("click", function(e) {
 			e.preventDefault();
 			$("body").addClass("ttgr-cat-nav-open");
-			if (typeof lenis !== "undefined") lenis.stop();
+			// Scroll to top then stop lenis
+			if (typeof lenis !== "undefined") {
+				lenis.scrollTo(0, {
+					duration: 0.6,
+					onComplete: function() {
+						lenis.stop();
+					}
+				});
+			}
 
 			if ($("body").hasClass("ttgr-cat-nav-open")) {
 				gsap.to(".portfolio-grid-item", { duration: 0.3, scale: 0.9 });
