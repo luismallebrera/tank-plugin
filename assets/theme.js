@@ -525,6 +525,7 @@
 		$(".ttgr-cat-trigger").on("click", function(e) {
 			e.preventDefault();
 			$("body").addClass("ttgr-cat-nav-open");
+			if (typeof lenis !== "undefined") lenis.stop();
 
 			if ($("body").hasClass("ttgr-cat-nav-open")) {
 				gsap.to(".portfolio-grid-item", { duration: 0.3, scale: 0.9 });
@@ -557,6 +558,7 @@
 		// On close click function
 		function ttCatNavClose() {
 			$(".ttgr-cat-nav").on("click", function() {
+				if (typeof lenis !== "undefined") lenis.start();
 				$("body").removeClass("ttgr-cat-nav-open");
 
 				// Categories step out animations
