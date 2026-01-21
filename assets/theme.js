@@ -463,6 +463,57 @@
 
 	// =====================================================
 
+	// =====================================================
+	// Portfolio grid categories filter show/hide on scroll
+	// =====================================================
+
+	if ($(".tt-grid-categories").length) {
+
+		var $ttgCatTriggerWrap = $(".ttgr-cat-trigger-wrap");
+
+		if ($ttgCatTriggerWrap.hasClass("ttgr-cat-fixed")) {
+			$ttgCatTriggerWrap.appendTo("#body-inner");
+
+			// Show/Hide trigger on page scroll
+			ScrollTrigger.create({
+				trigger: "#portfolio-grid",
+				start: "top bottom",
+				end: "bottom 75%",
+				scrub: true,
+				markers: false,
+
+				onEnter: () => ttgCatShow(),
+				onLeave: () => ttgCatHide(),
+				onEnterBack: () => ttgCatShow(),
+				onLeaveBack: () => ttgCatHide(),
+			});
+
+			function ttgCatShow() {
+				gsap.to($ttgCatTriggerWrap, { duration: 0.4, autoAlpha: 1, scale: 1, ease:Power2.easeOut });
+			}
+			function ttgCatHide() {
+				gsap.to($ttgCatTriggerWrap, { duration: 0.4, autoAlpha: 0, scale: 0.9, ease:Power2.easeOut });
+			}
+
+		} else {
+
+			// Hide trigger before it reaches the top when page scroll
+			gsap.to($ttgCatTriggerWrap, {
+				yPercent: 70,
+				autoAlpha: 0,
+				ease: "none",
+				scrollTrigger: {
+					trigger: $ttgCatTriggerWrap,
+					start: "top 250px",
+					end: "100px 250px",
+					scrub: true,
+					markers: false
+				},
+			});
+
+		}
+	}
+
 	// ==========================================
 	// Portfolio grid categories navigation overlay
 	// ==========================================
