@@ -521,6 +521,8 @@
 	if ($(".ttgr-cat-nav").length) {
 		$(".ttgr-cat-nav").appendTo("#body-inner");
 
+gsap.set(".ttgr-cat-nav", { autoAlpha: 0 });
+
 		// On category trigger click
 
 	$(".ttgr-cat-trigger").on("click", function(e) {
@@ -542,7 +544,6 @@
 			showCatNavigation();
 		}
 
-		gsap.set(".ttgr-cat-nav", { autoAlpha: 0 });
 
 		function showCatNavigation() {
 			if ($("body").hasClass("ttgr-cat-nav-open")) {
